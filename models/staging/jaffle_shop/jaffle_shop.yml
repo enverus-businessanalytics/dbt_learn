@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: jaffle_shop
+    description: dbt learn module with dummy data from their transactional system
+    database: dev_raw_db
+    schema: jaffle_shop
+    tables:
+      - name: customers
+        description: Table of customers
+      - name: orders
+        description: Table of jaffle shop orders
