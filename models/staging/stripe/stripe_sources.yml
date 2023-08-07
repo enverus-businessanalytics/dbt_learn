@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: stripe
+    description: dbt learn module with dummy data from their transactional system
+    database: dev_raw_db
+    schema: stripe
+    tables:
+      - name: payment
+        description: Table of payments
+        columns:
+          - name: id
+            tests:
+              - not_null
+              - unique
+          - name: paymentmethod
+            tests:
+              - accepted_values:
+                  values: ['credit_card', 'bank_transfer', 'gift_card', 'coupon']
+          - name: status
+            tests:
+              - accepted_values:
+                  values: ['success', 'fail']
+      
