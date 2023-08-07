@@ -1,12 +1,12 @@
 with orders as  (
 
-    select * from {{ ref('stg_orders' )}}
+    select * from {{ ref('stage_orders' )}}
 
 ),
 
 payments as (
 
-    select * from {{ ref('stg_payments') }}
+    select * from {{ ref('stage_payments') }}
     
 ),
 
@@ -15,7 +15,7 @@ order_payments as (
     select
 
         order_id,
-        sum(case when status = 'success' then amount end) as amount_usd
+        sum(case when payment_status = 'success' then amount end) as amount_usd
 
     from payments
     group by 1
