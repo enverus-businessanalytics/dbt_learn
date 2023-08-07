@@ -1,18 +1,23 @@
-with source as (
+with
 
-    select * from {{ source('jaffle_shop','customers')}}
+source as (
+
+    select * from {{ source('ecom', 'raw_customers') }}
 
 ),
 
-base as (
+renamed as (
 
-    select 
+    select
 
-    id as customer_id,
-    first_name,
-    last_name
+        ----------  ids
+        id as customer_id,
+
+        ---------- text
+        name as customer_name
 
     from source
+
 )
 
-select * from base
+select * from renamed
