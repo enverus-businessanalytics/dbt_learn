@@ -33,6 +33,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 models:
   marts:
+    +database: EXP_ANALYTICS_DB
+    +materialized: table
     core:
       materialized: table
       +schema: core_learning
@@ -43,6 +45,9 @@ models:
       materialized: table
       +schema: activity_schema_learning
   staging:
+    +database: EXP_WORKSPACE_DB
+    +materialized: view
+
     jaffle_shop:
       materialzed: view
     # Applies to all files under models/example/
@@ -53,3 +58,8 @@ models:
       +schema: stripe
     activity_schema:
       +schema: activity_schema
+
+  intermediate: 
+    +database: EXP_WORKSPACE_DB
+    +materialized: view
+  
