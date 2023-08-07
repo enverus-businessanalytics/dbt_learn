@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: stg_customers
+  - name: stage_customers
     description: This model cleans up customer data
     columns:
       - name: customer_id
@@ -14,7 +14,7 @@ models:
       - name: last_name
         description: Last name of the customer
 
-  - name: stg_orders
+  - name: stage_orders
     description: One record per order
     columns:
       - name: order_id
@@ -26,7 +26,7 @@ models:
         description: Foreign key to customers
         tests:
           - relationships:
-              to: ref('stg_customers')
+              to: ref('stage_customers')
               field: customer_id
       - name: order_date
         description: Date the order was placed.

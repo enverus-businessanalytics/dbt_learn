@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: stg_payments
+  - name: stage_payments
     description: Staged payments data from Stripe.
     columns: 
       - name: payment_id
