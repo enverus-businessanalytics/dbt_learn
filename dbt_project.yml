@@ -35,6 +35,10 @@ vars:
 # In this example config, we tell dbt to build all models in the example/ directory
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
+seeds:
+  +database: EXP_WORKSPACE_DB
+  +schema: seed_data
+
 models:
   marts:
     +database: EXP_ANALYTICS_DB
@@ -51,7 +55,7 @@ models:
   staging:
     +database: EXP_WORKSPACE_DB
     +materialized: view
-
+    
     jaffle_shop:
       materialzed: view
     # Applies to all files under models/example/
