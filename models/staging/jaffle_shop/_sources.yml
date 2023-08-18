@@ -2,13 +2,33 @@ version: 2
 
 sources:
   - name: ecom
-    schema: '{{ target.schema }}'
+    schema: jaffle_shop
     description: E-commerce data
     tables:
       - name: raw_customers
         description: One record per person who has purchased one or more items
+        columns:
+          - name: id
+            data_type: STRING
+          - name: name
+            data_type: STRING       
       - name: raw_orders
         description: One record per order (consisting of one or more order items)
+        columns:
+          - name: customer
+            data_type: STRING
+          - name: id
+            data_type: STRING
+          - name: ordered_at
+            data_type: DATETIME
+          - name: order_total
+            data_type: NUMERIC
+          - name: store_id
+            data_type: STRING
+          - name: subtotal
+            data_type: NUMERIC   
+          - name: tax_paid
+            data_type: NUMERIC       
         freshness:
           warn_after:
             count: 24
@@ -19,7 +39,23 @@ sources:
         loaded_at_field: ordered_at
       - name: raw_items
         description: Items included in an order
+        columns:
+          - name: id
+            data_type: STRING
+          - name: order_id
+            data_type: STRING
+          - name: sku
+            data_type: STRING  
       - name: raw_stores
+        columns:
+          - name: id
+            data_type: STRING
+          - name: name
+            data_type: STRING
+          - name: opened_at
+            data_type: DATETIME
+          - name: tax_rate
+            data_type: NUMERIC  
         freshness:
           warn_after:
             count: 24
@@ -30,5 +66,27 @@ sources:
         loaded_at_field: opened_at
       - name: raw_products
         description: One record per SKU for items sold in stores
+        columns:
+          - name: description
+            data_type: STRING
+          - name: name
+            data_type: STRING
+          - name: price
+            data_type: NUMERIC
+          - name: sku
+            data_type: STRING
+          - name: type
+            data_type: STRING  
       - name: raw_supplies
         description: One record per supply per SKU of items sold in stores
+        columns:
+          - name: cost
+            data_type: NUMERIC
+          - name: id
+            data_type: STRING
+          - name: name
+            data_type: STRING
+          - name: perishable
+            data_type: BOOLEAN
+          - name: sku
+            data_type: STRING  
